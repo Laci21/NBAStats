@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/templates/common.xhtml">
+	<ui:define name="pageTitle">${clientController.editing ? 'Edit Client' : 'Add Client'}</ui:define>
+	<ui:define name="pageHeader">${clientController.editing ? 'Edit Client' : 'Add Client'}</ui:define>
+	<ui:define name="body">
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Name:" for="name" />
+				<h:inputText id="name" value="#{clientController.current.name}"
+					required="true" />
+
+				<h:outputLabel value="Password:" for="password" />
+				<h:inputText id="password"
+					value="#{clientController.current.password}" required="true" />
+
+				<h:outputLabel value="Address:" for="address" />
+				<h:inputText id="address"
+					value="#{clientController.current.address}" required="true" />
+
+				<h:outputLabel value="Admin:" for="admin" />
+				<h:selectBooleanCheckbox id="admin"
+					value="#{clientController.current.admin}" />
+
+			</h:panelGrid>
+			<br />
+			<h:commandLink action="#{clientController.register}" value="Save" />
+			<h:messages />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

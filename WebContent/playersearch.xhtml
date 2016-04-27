@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/templates/common.xhtml">
+	<ui:define name="pageTitle">NBAStats player search</ui:define>
+	<ui:define name="pageHeader">NBAStats player search</ui:define>
+	<ui:define name="body">
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Player name:" for="name" />
+				<h:inputText id="name" value="#{playerController.name}"
+					required="true" />
+			</h:panelGrid>
+			<br />
+			<h:commandLink action="#{playerController.search}" value="Search" />
+			<h:messages />
+		</h:form>
+		<br />
+		<h:form>
+			<h:dataTable value="#{playerController.player}" var="player">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<h:outputText value="#{player.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Games played" />
+					</f:facet>
+					<h:outputText value="#{player.games}" />
+				</h:column>
+				<h:column rendered="#{securityBean.user}">
+					<f:facet name="header">
+						<h:outputText value="&nbsp;" />
+					</f:facet>
+					<h:commandLink action="#{clientController.saveAsFavourite(player.name)}"
+						value="Save as favourite" />
+					<h:outputText value=" " />
+				</h:column>
+				<h:column rendered="#{securityBean.admin}">
+					<f:facet name="header">
+						<h:outputText value="&nbsp;" />
+					</f:facet>
+					<h:commandLink action="#{playerController.editPlayer}"
+						value="Edit player" />
+					<h:outputText value=" " />
+				</h:column>
+			</h:dataTable>
+			<br />
+			<h:commandLink action="#{playerController.createNew}"
+				value="Create new player" rendered="#{securityBean.admin}" />
+			<h:messages />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
