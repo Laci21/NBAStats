@@ -6,22 +6,18 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="/templates/common.xhtml">
-	<ui:define name="pageTitle">NBAStats main page</ui:define>
-	<ui:define name="pageHeader">NBAStats main page</ui:define>
+	<ui:define name="pageTitle">Login error</ui:define>
+	<ui:define name="pageHeader">Login error</ui:define>
 	<ui:define name="body">
 		<h:form>
-			<h:commandLink action="/faces/playersearch.xhtml?faces-redirect=true"
-				value="Player search" />
-			<br />
-
-			<h:commandLink action="/faces/teamsearch.xhtml?faces-redirect=true"
-				value="Team search" />
-			<br />
-
-			<h:commandLink action="/faces/draftsearch.xhtml?faces-redirect=true"
-				value="Draft search" />
+			<h2>Invalid user name or password.</h2>
+			<p>
+				Please enter a user name or password that is authorized to access
+				this application.
+				<h:commandLink action="/faces/login.xhtml?faces-redirect=true"
+					value="Click here to try again" />
+			</p>
 		</h:form>
-		<h:messages />
 	</ui:define>
 </ui:composition>
 </html>

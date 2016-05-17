@@ -13,7 +13,7 @@
 		Welcome <h:outputLabel value="#{securityBean.userName}" />!
     <h:form>
 		<h:commandLink action="#{securityBean.logout()}" value="Logout"
-			immediate="true" />
+			immediate="true" rendered="#{securityBean.user}" />
 	</h:form>
 	<h1>
 		<ui:insert name="pageHeader">Default Header</ui:insert>

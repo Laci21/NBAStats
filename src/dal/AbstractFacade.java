@@ -53,8 +53,8 @@ public abstract class AbstractFacade<T> {
 	}
 
 	public int count() {
-		CriteriaQuery<Long> cq = em().getCriteriaBuilder()
-				.createQuery(Long.class);
+		CriteriaQuery<Long> cq = em().getCriteriaBuilder().createQuery(
+				Long.class);
 		Root<T> rt = cq.from(entityClass);
 		cq.select(em().getCriteriaBuilder().count(rt));
 		Query q = em().createQuery(cq);

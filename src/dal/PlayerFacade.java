@@ -1,6 +1,9 @@
 package dal;
 
+import java.util.List;
+
 import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -12,7 +15,7 @@ import entity.Player;
 
 @Stateless
 @LocalBean
-@DeclareRoles({ Client.GUEST_ROLE, Client.USER_ROLE, Client.ADMIN_ROLE })
+@DeclareRoles({ Client.USER_ROLE, Client.ADMIN_ROLE })
 public class PlayerFacade extends AbstractFacade<Player> {
 
 	@PersistenceContext
@@ -28,8 +31,32 @@ public class PlayerFacade extends AbstractFacade<Player> {
 	}
 
 	@Override
-	@RolesAllowed({ Client.GUEST_ROLE, Client.USER_ROLE, Client.ADMIN_ROLE })
+	@PermitAll
 	public Player find(Object id) {
 		return super.find(id);
+	}
+
+	@Override
+	@PermitAll
+	public List<Player> findAll() {
+		return super.findAll();
+	}
+
+	@Override
+	@RolesAllowed({ Client.ADMIN_ROLE })
+	public void edit(Player entity) {
+		super.edit(entity);
+	}
+
+	@Override
+	@RolesAllowed({ Client.ADMIN_ROLE })
+	public void create(Player entity) {
+		super.create(entity);
+	}
+
+	@Override
+	@RolesAllowed({ Client.ADMIN_ROLE })
+	public void remove(Player entity) {
+		super.remove(entity);
 	}
 }

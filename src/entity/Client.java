@@ -16,7 +16,6 @@ import com.sun.istack.internal.Nullable;
 public class Client implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public static final String GUEST_ROLE = "GUEST";
 	public static final String USER_ROLE = "USER";
 	public static final String ADMIN_ROLE = "ADMIN";
 
@@ -30,10 +29,6 @@ public class Client implements Serializable {
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	private Set<String> roles = new HashSet<>();
-
-	public Client() {
-		roles.add(GUEST_ROLE);
-	}
 
 	public String getName() {
 		return name;

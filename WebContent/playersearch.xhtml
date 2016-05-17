@@ -10,16 +10,17 @@
 	<ui:define name="pageHeader">NBAStats player search</ui:define>
 	<ui:define name="body">
 		<h:form>
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="3">
 				<h:outputLabel value="Player name:" for="name" />
-				<h:inputText id="name" value="#{playerController.name}"
+				<h:inputText id="name" value="#{playerController.player.name}"
 					required="true" />
+				<h:commandLink
+					action="#{playerController.search(playerController.player.name)}"
+					value="Search" />
 			</h:panelGrid>
-			<br />
-			<h:commandLink action="#{playerController.search}" value="Search" />
-			<h:messages />
 		</h:form>
 		<br />
+		<h2>Search result:</h2>
 		<h:form>
 			<h:dataTable value="#{playerController.player}" var="player">
 				<h:column>
@@ -38,7 +39,8 @@
 					<f:facet name="header">
 						<h:outputText value="&nbsp;" />
 					</f:facet>
-					<h:commandLink action="#{clientController.saveAsFavourite(player.name)}"
+					<h:commandLink
+						action="#{clientController.saveAsFavourite(player.name)}"
 						value="Save as favourite" />
 					<h:outputText value=" " />
 				</h:column>
@@ -49,6 +51,32 @@
 					<h:commandLink action="#{playerController.editPlayer}"
 						value="Edit player" />
 					<h:outputText value=" " />
+				</h:column>
+				<h:column rendered="#{securityBean.admin}">
+					<f:facet name="header">
+						<h:outputText value="&nbsp;" />
+					</f:facet>
+					<h:commandLink action="#{playerController.removePlayer}"
+						value="Remove player" />
+					<h:outputText value=" " />
+				</h:column>
+			</h:dataTable>
+		</h:form>
+		<br />
+		<h2>All players:</h2>
+		<h:form>
+			<h:dataTable value="#{playerController.players}" var="player">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<h:outputText value="#{player.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Games played" />
+					</f:facet>
+					<h:outputText value="#{player.games}" />
 				</h:column>
 			</h:dataTable>
 			<br />

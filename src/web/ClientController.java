@@ -47,7 +47,7 @@ public class ClientController implements Serializable {
 		facade.create(current);
 
 		FacesUtil
-				.addInfoMessage("User successfully registered. You can login now.");
+				.addInfoMessage(current.getName() + " successfully registered. You can login now.");
 
 		items = null;
 		current = null;
@@ -56,9 +56,10 @@ public class ClientController implements Serializable {
 	}
 
 	public void saveAsFavourite(String favouritePlayerName) {
-		getCurrent().setFavouritePlayerName(favouritePlayerName);
+		current = getItems().getRowData();
+		current.setFavouritePlayerName(favouritePlayerName);
 		facade.edit(current);
 
-		FacesUtil.addInfoMessage("Team successfully saved.");
+		FacesUtil.addInfoMessage("Player successfully saved.");
 	}
 }
