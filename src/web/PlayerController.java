@@ -91,4 +91,12 @@ public class PlayerController implements Serializable {
 	public void search(String name) {
 		player = facade.find(name);
 	}
+
+	public boolean isSearchFoundPlayer() {
+		if (player.getName() == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

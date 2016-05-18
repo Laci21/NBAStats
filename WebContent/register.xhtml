@@ -12,17 +12,18 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="UserName:" for="name" />
-				<h:inputText id="name" value="#{clientController.current.name}"
-					required="true" />
+				<h:inputText id="name" label="UserName"
+					value="#{clientController.current.name}" required="true" />
 
 				<h:outputLabel value="Password:" for="password" />
-				<h:inputText id="password"
+				<h:inputSecret id="password" label="Password"
 					value="#{clientController.current.password}" required="true" />
-
 			</h:panelGrid>
 			<br />
-			<h:commandLink action="#{clientController.register}" value="Register" />
-			<h:messages />
+			<h:commandButton action="#{clientController.register}"
+				value="Register" style="color:green" />
+			<br />
+			<h:messages style="color:red" />
 		</h:form>
 	</ui:define>
 </ui:composition>

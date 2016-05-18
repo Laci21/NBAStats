@@ -10,10 +10,10 @@
 </h:head>
 
 <h:body>
-		Welcome <h:outputLabel value="#{securityBean.userName}" />!
+		Welcome <h:outputLabel value="#{securityBean.username}" />!
     <h:form>
-		<h:commandLink action="#{securityBean.logout()}" value="Logout"
-			immediate="true" rendered="#{securityBean.user}" />
+		<h:commandButton action="#{securityBean.logout()}" value="Logout"
+			immediate="true" rendered="#{securityBean.user}" style="color:red"/>
 	</h:form>
 	<h1>
 		<ui:insert name="pageHeader">Default Header</ui:insert>

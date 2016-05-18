@@ -10,19 +10,21 @@
 	<ui:define name="pageHeader">NBAStats home page</ui:define>
 	<ui:define name="body">
 		<h:form>
-			<h:commandLink action="/faces/register.xhtml?faces-redirect=true"
-				value="Register" />
+			<h:commandButton action="/faces/register.xhtml?faces-redirect=true"
+				value="Register" style="color:green" />
+			<br />
 			<br />
 
-			<h:commandLink action="/faces/login.xhtml?faces-redirect=true"
-				value="Login" />
+			<h:commandButton action="/faces/login.xhtml?faces-redirect=true"
+				value="Login" style="color:blue" />
+			<br />
 			<br />
 
-			<h:commandLink action="/faces/mainpage.xhtml?faces-redirect=true"
-				value="Login as guest" />
+			<h:commandButton action="/faces/mainpage.xhtml?faces-redirect=true"
+				value="Login as guest" style="color:brown" />
 			<br />
-
-			<h:messages />
+			<br />
+			<h:messages style="color:green"/>
 		</h:form>
 	</ui:define>
 </ui:composition>

@@ -17,7 +17,7 @@ public class ClientController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Client current = new Client();
-	private DataModel<Client> items = null;
+	private DataModel<Client> clients = null;
 
 	@EJB
 	private ClientFacade facade;
@@ -33,13 +33,13 @@ public class ClientController implements Serializable {
 	}
 
 	public DataModel<Client> getItems() {
-		if (items == null)
-			items = new ListDataModel<Client>(facade.findAll());
-		return items;
+		if (clients == null)
+			clients = new ListDataModel<Client>(facade.findAll());
+		return clients;
 	}
 
 	public void setItems(DataModel<Client> items) {
-		this.items = items;
+		this.clients = items;
 	}
 
 	public String register() {
@@ -49,7 +49,7 @@ public class ClientController implements Serializable {
 		FacesUtil
 				.addInfoMessage(current.getName() + " successfully registered. You can login now.");
 
-		items = null;
+		clients = null;
 		current = null;
 
 		return FacesUtil.pageWithRedirect("index.xhtml");

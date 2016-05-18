@@ -2,22 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-<h:head>
-	<title>Login to NBAStats</title>
-</h:head>
-<body>
-	<h1>Login to NBAStats</h1>
-	<form method="post" action="j_security_check" >
-		<h:messages />
-		<h:panelGrid columns="2">
-			<h:outputLabel value="UserName:" />
-			<input type="text" name="j_username" />
-			<h:outputLabel value="Password:" />
-			<input type="password" name="j_password" />
-		</h:panelGrid>
-		<input type="submit" value="Login" />
-	</form>
-</body>
+<ui:composition template="/templates/common.xhtml">
+	<ui:define name="pageTitle">Login to NBAStats</ui:define>
+	<ui:define name="pageHeader">Login to NBAStats</ui:define>
+	<ui:define name="body">
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="UserName:" for="username" />
+				<h:inputText id="username" label = "UserName" value="#{securityBean.username}"
+					required="true" />
+				<h:outputLabel for="password" value="Password:"/>
+				<h:inputSecret id="password" label = "Password" value="#{securityBean.password}"
+					required="true" />
+			</h:panelGrid>
+			<br/>
+			<h:commandButton value="Login" action="#{securityBean.login}" style="color:blue"/>
+			<h:messages style="color:red"/>
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>

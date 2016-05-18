@@ -13,16 +13,18 @@
 			<h:panelGrid columns="3">
 				<h:outputLabel value="Player name:" for="name" />
 				<h:inputText id="name" value="#{playerController.player.name}"
-					required="true" />
-				<h:commandLink
+					required="true" label="Player name" />
+				<h:commandButton
 					action="#{playerController.search(playerController.player.name)}"
-					value="Search" />
+					value="Search" style="color:blue" />
 			</h:panelGrid>
 		</h:form>
 		<br />
 		<h2>Search result:</h2>
 		<h:form>
-			<h:dataTable value="#{playerController.player}" var="player">
+			<h:dataTable value="#{playerController.player}" var="player"
+				rendered="#{playerController.searchFoundPlayer}"
+				style="text-align:center" width="70%">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Name" />
@@ -33,39 +35,76 @@
 					<f:facet name="header">
 						<h:outputText value="Games played" />
 					</f:facet>
-					<h:outputText value="#{player.games}" />
+					<h:outputText value="#{player.games}" style="" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Points" />
+					</f:facet>
+					<h:outputText value="#{player.points}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Assists" />
+					</f:facet>
+					<h:outputText value="#{player.assists}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Rebounds" />
+					</f:facet>
+					<h:outputText value="#{player.rebounds}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Steals" />
+					</f:facet>
+					<h:outputText value="#{player.steals}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Blocks" />
+					</f:facet>
+					<h:outputText value="#{player.blocks}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Minutes" />
+					</f:facet>
+					<h:outputText value="#{player.minutes}" />
 				</h:column>
 				<h:column rendered="#{securityBean.user}">
 					<f:facet name="header">
 						<h:outputText value="&nbsp;" />
 					</f:facet>
-					<h:commandLink
+					<h:commandButton
 						action="#{clientController.saveAsFavourite(player.name)}"
-						value="Save as favourite" />
-					<h:outputText value=" " />
+						value="Save as favourite" style="color:green" />
 				</h:column>
 				<h:column rendered="#{securityBean.admin}">
 					<f:facet name="header">
 						<h:outputText value="&nbsp;" />
 					</f:facet>
-					<h:commandLink action="#{playerController.editPlayer}"
-						value="Edit player" />
-					<h:outputText value=" " />
+					<h:commandButton action="#{playerController.editPlayer}"
+						value="Edit player" style="color:blue" />
 				</h:column>
 				<h:column rendered="#{securityBean.admin}">
 					<f:facet name="header">
 						<h:outputText value="&nbsp;" />
 					</f:facet>
-					<h:commandLink action="#{playerController.removePlayer}"
-						value="Remove player" />
+					<h:commandButton action="#{playerController.removePlayer}"
+						value="Remove player" style="color:red" />
 					<h:outputText value=" " />
 				</h:column>
 			</h:dataTable>
+			<h:outputLabel value="No player found."
+				rendered="#{!playerController.searchFoundPlayer}" />
 		</h:form>
 		<br />
 		<h2>All players:</h2>
 		<h:form>
-			<h:dataTable value="#{playerController.players}" var="player">
+			<h:dataTable value="#{playerController.players}" var="player"
+				style="text-align:center">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Name" />
