@@ -75,17 +75,34 @@ public class PlayerController implements Serializable {
 	}
 
 	public String save() {
-		if (editing)
+		if (editing) {
 			facade.edit(player);
-		else
-			facade.create(player);
 
-		FacesUtil.addInfoMessage("Player successfully saved");
+			FacesUtil.addInfoMessage("Player successfully saved");
 
-		players = null;
-		player = null;
+			players = null;
+			player = null;
 
-		return FacesUtil.pageWithRedirect("mainpage.xhtml");
+			return FacesUtil.pageWithRedirect("mainpage.xhtml");
+		} else {
+			try {
+				facade.create(player);
+
+				FacesUtil.addInfoMessage("Player successfully saved");
+
+				players = null;
+				player = null;
+
+				return FacesUtil.pageWithRedirect("mainpage.xhtml");
+			} catch (Exception e) {
+				FacesUtil.addInfoMessage(player.getName() + " already saved.");
+
+				players = null;
+				player = null;
+
+				return FacesUtil.pageWithRedirect("editplayer.xhtml");
+			}
+		}
 	}
 
 	public void search(String name) {

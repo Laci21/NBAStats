@@ -9,11 +9,12 @@
 	<title><ui:insert name="pageTitle">Default Title</ui:insert></title>
 </h:head>
 
-<h:body>
+<h:body
+	style="background-image: url(background.jpg); background-size:cover; ">
 		Welcome <h:outputLabel value="#{securityBean.username}" />!
     <h:form>
 		<h:commandButton action="#{securityBean.logout()}" value="Logout"
-			immediate="true" rendered="#{securityBean.user}" style="color:red"/>
+			immediate="true" rendered="#{securityBean.user}" style="color:red" />
 	</h:form>
 	<h1>
 		<ui:insert name="pageHeader">Default Header</ui:insert>

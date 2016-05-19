@@ -9,7 +9,34 @@
 	<ui:define name="pageTitle">NBAStats player search</ui:define>
 	<ui:define name="pageHeader">NBAStats player search</ui:define>
 	<ui:define name="body">
+		<h:form rendered="#{securityBean.user}">
+			<h2>Favourite player:</h2>
+			<h:panelGrid columns="4"
+				rendered="#{clientController.hasFavouritePlayer()}">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<h:outputText
+						value="#{clientController.current.favouritePlayerName}" />
+				</h:column>
+				<h:column rendered="#{securityBean.user}">
+					<f:facet name="header">
+						<h:outputText value="&nbsp;" />
+					</f:facet>
+					<h:commandButton action="#{clientController.deleteFavourite()}"
+						value="Delete favourite" style="color:red" />
+				</h:column>
+			</h:panelGrid>
+			<h:outputLabel value="No favourite player selected."
+				rendered="#{!clientController.hasFavouritePlayer()}" />
+		</h:form>
+
+		<br />
+		<br />
+
 		<h:form>
+			<h2>Search for player:</h2>
 			<h:panelGrid columns="3">
 				<h:outputLabel value="Player name:" for="name" />
 				<h:inputText id="name" value="#{playerController.player.name}"
@@ -19,7 +46,9 @@
 					value="Search" style="color:blue" />
 			</h:panelGrid>
 		</h:form>
+
 		<br />
+
 		<h2>Search result:</h2>
 		<h:form>
 			<h:dataTable value="#{playerController.player}" var="player"
@@ -100,7 +129,10 @@
 			<h:outputLabel value="No player found."
 				rendered="#{!playerController.searchFoundPlayer}" />
 		</h:form>
+
 		<br />
+		<br />
+
 		<h2>All players:</h2>
 		<h:form>
 			<h:dataTable value="#{playerController.players}" var="player"
@@ -119,8 +151,9 @@
 				</h:column>
 			</h:dataTable>
 			<br />
-			<h:commandLink action="#{playerController.createNew}"
-				value="Create new player" rendered="#{securityBean.admin}" />
+			<h:commandButton action="#{playerController.createNew}"
+				value="Create new player" rendered="#{securityBean.admin}"
+				style="color:green" />
 			<h:messages />
 		</h:form>
 	</ui:define>

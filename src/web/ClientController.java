@@ -44,15 +44,33 @@ public class ClientController implements Serializable {
 
 	public String register() {
 		current.addRole(Client.USER_ROLE);
-		facade.create(current);
+		try {
+			facade.create(current);
 
-		FacesUtil
-				.addInfoMessage(current.getName() + " successfully registered. You can login now.");
+			FacesUtil.addInfoMessage(current.getName()
+					+ " successfully registered. You can login now.");
 
-		clients = null;
-		current = null;
+			clients = null;
+			current = null;
 
-		return FacesUtil.pageWithRedirect("index.xhtml");
+			return FacesUtil.pageWithRedirect("index.xhtml");
+		} catch (Exception e) {
+			FacesUtil
+					.addInfoMessage(current.getName() + " already registered.");
+
+			clients = null;
+			current = null;
+
+			return FacesUtil.pageWithRedirect("register.xhtml");
+		}
+	}
+
+	public void deleteFavourite() {
+		current = getItems().getRowData();
+		current.setFavouritePlayerName(null);
+		facade.edit(current);
+
+		FacesUtil.addInfoMessage("Favourite player successfully deleted.");
 	}
 
 	public void saveAsFavourite(String favouritePlayerName) {
@@ -61,5 +79,16 @@ public class ClientController implements Serializable {
 		facade.edit(current);
 
 		FacesUtil.addInfoMessage("Player successfully saved.");
+	}
+
+	public boolean hasFavouritePlayer() {
+		current = getItems().getRowData();
+		if (current != null) {
+			if (current.getFavouritePlayerName() != null) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

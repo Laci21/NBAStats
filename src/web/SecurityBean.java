@@ -36,6 +36,9 @@ public class SecurityBean implements Serializable {
 
 		try {
 			request.login(username, password);
+
+			FacesUtil.addInfoMessage(username + " login succeeded!");
+
 			externalContext.redirect("mainpage.xhtml");
 		} catch (ServletException e) {
 			username = null;

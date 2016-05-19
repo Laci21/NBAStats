@@ -19,7 +19,7 @@ public abstract class AbstractFacade<T> {
 
 	protected abstract EntityManager em();
 
-	public void create(T entity) {
+	public void create(T entity) throws Exception {
 		em().persist(entity);
 	}
 

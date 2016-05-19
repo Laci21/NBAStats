@@ -20,7 +20,8 @@
 					value="#{playerController.player.games}" required="true" />
 			</h:panelGrid>
 			<br />
-			<h:commandLink action="#{playerController.save()}" value="Save" />
+			<h:commandButton action="#{playerController.save()}" value="Save"
+				style="color:green" />
 			<h:messages />
 		</h:form>
 	</ui:define>

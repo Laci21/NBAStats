@@ -31,7 +31,7 @@ public class ClientFacade extends AbstractFacade<Client> {
 
 	@Override
 	@PermitAll
-	public void create(Client entity) {
+	public void create(Client entity) throws Exception {
 		super.create(entity);
 	}
 

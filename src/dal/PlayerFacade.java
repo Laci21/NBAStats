@@ -50,7 +50,7 @@ public class PlayerFacade extends AbstractFacade<Player> {
 
 	@Override
 	@RolesAllowed({ Client.ADMIN_ROLE })
-	public void create(Player entity) {
+	public void create(Player entity) throws Exception {
 		super.create(entity);
 	}
 
