@@ -95,23 +95,47 @@ public class SecurityBean implements Serializable {
 		}
 	}
 
-	public void deleteFavourite() {
+	public void deleteFavouritePlayer() {
 		current.setFavouritePlayerName(null);
 		facade.edit(current);
 
 		FacesUtil.addInfoMessage("Favourite player successfully deleted.");
 	}
 
-	public void saveAsFavourite(String favouritePlayerName) {
+	public void deleteFavouriteTeam() {
+		current.setFavouriteTeamName(null);
+		facade.edit(current);
+
+		FacesUtil.addInfoMessage("Favourite team successfully deleted.");
+	}
+
+	public void saveAsFavouritePlayer(String favouritePlayerName) {
 		current.setFavouritePlayerName(favouritePlayerName);
 		facade.edit(current);
 
 		FacesUtil.addInfoMessage("Player successfully saved.");
 	}
 
+	public void saveAsFavouriteTeam(String favouriteTeamName) {
+		current.setFavouriteTeamName(favouriteTeamName);
+		facade.edit(current);
+
+		FacesUtil.addInfoMessage("Team successfully saved.");
+	}
+
 	public boolean hasFavouritePlayer() {
 		if (current != null) {
 			if (current.getFavouritePlayerName() != null) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public boolean hasFavouriteTeam() {
+		if (current != null) {
+			if (current.getFavouriteTeamName() != null) {
 				return true;
 			}
 		}

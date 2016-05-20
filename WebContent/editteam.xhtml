@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/templates/common.xhtml">
+	<ui:define name="pageTitle">${teamController.editing ? 'Edit Team' : 'Create Team'}</ui:define>
+	<ui:define name="pageHeader">${teamController.editing ? 'Edit Team' : 'Create Team'}</ui:define>
+	<ui:define name="body">
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Team name: " for="name" />
+				<h:inputText id="name" value="#{teamController.team.name}"
+					required="true" label="Team name" />
+
+				<h:outputLabel value="Games played: " for="gamesplayed" />
+				<h:inputText id="gamesplayed" value="#{teamController.team.games}" />
+
+				<h:outputLabel value="Points: " for="points" />
+				<h:inputText id="points" value="#{teamController.team.points}" />
+
+				<h:outputLabel value="Assists: " for="assists" />
+				<h:inputText id="assists" value="#{teamController.team.assists}" />
+
+				<h:outputLabel value="Rebounds: " for="rebounds" />
+				<h:inputText id="rebounds" value="#{teamController.team.rebounds}" />
+
+				<h:outputLabel value="Steals: " for="steals" />
+				<h:inputText id="steals" value="#{teamController.team.steals}" />
+
+				<h:outputLabel value="Blocks: " for="blocks" />
+				<h:inputText id="blocks" value="#{teamController.team.blocks}" />
+
+				<h:outputLabel value="Games won: " for="gameswon" />
+				<h:inputText id="gameswon" value="#{teamController.team.won}" />
+
+				<h:outputLabel value="Games lost: " for="gameslost" />
+				<h:inputText id="gameslost" value="#{teamController.team.lost}" />
+			</h:panelGrid>
+			<br />
+			<h:commandButton action="#{teamController.save()}" value="Save"
+				style="color:green" />
+			<h:messages style="color:red" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

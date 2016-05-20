@@ -27,6 +27,9 @@ public class Client implements Serializable {
 	@Nullable
 	private String favouritePlayerName;
 
+	@Nullable
+	private String favouriteTeamName;
+
 	@ElementCollection(fetch = FetchType.EAGER)
 	private Set<String> roles = new HashSet<>();
 
@@ -52,6 +55,14 @@ public class Client implements Serializable {
 
 	public void setFavouritePlayerName(String favouritePlayerName) {
 		this.favouritePlayerName = favouritePlayerName;
+	}
+
+	public String getFavouriteTeamName() {
+		return favouriteTeamName;
+	}
+
+	public void setFavouriteTeamName(String favouriteTeamName) {
+		this.favouriteTeamName = favouriteTeamName;
 	}
 
 	public Set<String> getRoles() {
