@@ -12,24 +12,23 @@
 		<h:form rendered="#{securityBean.user}">
 			<h2>Favourite player:</h2>
 			<h:panelGrid columns="4"
-				rendered="#{clientController.hasFavouritePlayer()}">
+				rendered="#{securityBean.hasFavouritePlayer()}">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Name" />
 					</f:facet>
-					<h:outputText
-						value="#{clientController.current.favouritePlayerName}" />
+					<h:outputText value="#{securityBean.current.favouritePlayerName}" />
 				</h:column>
 				<h:column rendered="#{securityBean.user}">
 					<f:facet name="header">
 						<h:outputText value="&nbsp;" />
 					</f:facet>
-					<h:commandButton action="#{clientController.deleteFavourite()}"
+					<h:commandButton action="#{securityBean.deleteFavourite()}"
 						value="Delete favourite" style="color:red" />
 				</h:column>
 			</h:panelGrid>
 			<h:outputLabel value="No favourite player selected."
-				rendered="#{!clientController.hasFavouritePlayer()}" />
+				rendered="#{!securityBean.hasFavouritePlayer()}" />
 		</h:form>
 
 		<br />
@@ -107,7 +106,7 @@
 						<h:outputText value="&nbsp;" />
 					</f:facet>
 					<h:commandButton
-						action="#{clientController.saveAsFavourite(player.name)}"
+						action="#{securityBean.saveAsFavourite(player.name)}"
 						value="Save as favourite" style="color:green" />
 				</h:column>
 				<h:column rendered="#{securityBean.admin}">
@@ -142,12 +141,6 @@
 						<h:outputText value="Name" />
 					</f:facet>
 					<h:outputText value="#{player.name}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Games played" />
-					</f:facet>
-					<h:outputText value="#{player.games}" />
 				</h:column>
 			</h:dataTable>
 			<br />

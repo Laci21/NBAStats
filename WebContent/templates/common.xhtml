@@ -11,7 +11,7 @@
 
 <h:body
 	style="background-image: url(background.jpg); background-size:cover; ">
-		Welcome <h:outputLabel value="#{securityBean.username}" />!
+		Welcome <h:outputLabel value="#{securityBean.current.name}" />!
     <h:form>
 		<h:commandButton action="#{securityBean.logout()}" value="Logout"
 			immediate="true" rendered="#{securityBean.user}" style="color:red" />

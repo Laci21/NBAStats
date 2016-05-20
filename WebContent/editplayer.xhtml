@@ -11,18 +11,38 @@
 	<ui:define name="body">
 		<h:form>
 			<h:panelGrid columns="2">
-				<h:outputLabel value="Player name:" for="name" />
+				<h:outputLabel value="Player name: " for="name" />
 				<h:inputText id="name" value="#{playerController.player.name}"
-					required="true" />
+					required="true" label="Player name" />
 
-				<h:outputLabel value="Games played:" for="gamesplayed" />
+				<h:outputLabel value="Games played: " for="gamesplayed" />
 				<h:inputText id="gamesplayed"
-					value="#{playerController.player.games}" required="true" />
+					value="#{playerController.player.games}" />
+
+				<h:outputLabel value="Points: " for="points" />
+				<h:inputText id="points" value="#{playerController.player.points}" />
+
+				<h:outputLabel value="Assists: " for="assists" />
+				<h:inputText id="assists" value="#{playerController.player.assists}" />
+
+				<h:outputLabel value="Rebounds: " for="rebounds" />
+				<h:inputText id="rebounds"
+					value="#{playerController.player.rebounds}" />
+
+				<h:outputLabel value="Steals: " for="steals" />
+				<h:inputText id="steals" value="#{playerController.player.steals}" />
+
+				<h:outputLabel value="Blocks: " for="blocks" />
+				<h:inputText id="blocks" value="#{playerController.player.blocks}" />
+
+				<h:outputLabel value="Minutes played: " for="minutesplayed" />
+				<h:inputText id="minutesplayed"
+					value="#{playerController.player.minutes}" />
 			</h:panelGrid>
 			<br />
 			<h:commandButton action="#{playerController.save()}" value="Save"
 				style="color:green" />
-			<h:messages />
+			<h:messages style="color:red" />
 		</h:form>
 	</ui:define>
 </ui:composition>

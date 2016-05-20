@@ -12,15 +12,16 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="UserName:" for="username" />
-				<h:inputText id="username" label = "UserName" value="#{securityBean.username}"
-					required="true" />
-				<h:outputLabel for="password" value="Password:"/>
-				<h:inputSecret id="password" label = "Password" value="#{securityBean.password}"
-					required="true" />
+				<h:inputText id="username" label="UserName"
+					value="#{securityBean.current.name}" required="true" />
+				<h:outputLabel for="password" value="Password:" />
+				<h:inputSecret id="password" label="Password"
+					value="#{securityBean.current.password}" required="true" />
 			</h:panelGrid>
-			<br/>
-			<h:commandButton value="Login" action="#{securityBean.login}" style="color:blue"/>
-			<h:messages style="color:red"/>
+			<br />
+			<h:commandButton value="Login" action="#{securityBean.login}"
+				style="color:blue" />
+			<h:messages style="color:red" />
 		</h:form>
 	</ui:define>
 </ui:composition>

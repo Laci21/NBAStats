@@ -13,15 +13,15 @@
 			<h:panelGrid columns="2">
 				<h:outputLabel value="UserName:" for="name" />
 				<h:inputText id="name" label="UserName"
-					value="#{clientController.current.name}" required="true" />
+					value="#{securityBean.current.name}" required="true" />
 
 				<h:outputLabel value="Password:" for="password" />
 				<h:inputSecret id="password" label="Password"
-					value="#{clientController.current.password}" required="true" />
+					value="#{securityBean.current.password}" required="true" />
 			</h:panelGrid>
 			<br />
-			<h:commandButton action="#{clientController.register}"
-				value="Register" style="color:green" />
+			<h:commandButton action="#{securityBean.register}" value="Register"
+				style="color:green" />
 			<br />
 			<h:messages style="color:red" />
 		</h:form>

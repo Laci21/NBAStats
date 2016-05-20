@@ -42,6 +42,12 @@ public class ClientFacade extends AbstractFacade<Client> {
 	}
 
 	@Override
+	@PermitAll
+	public Client find(Object id) {
+		return super.find(id);
+	}
+
+	@Override
 	@RolesAllowed({ Client.USER_ROLE, Client.ADMIN_ROLE })
 	public List<Client> findAll() {
 		return super.findAll();
