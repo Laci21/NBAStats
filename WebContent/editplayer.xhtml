@@ -17,27 +17,31 @@
 
 				<h:outputLabel value="Games played: " for="gamesplayed" />
 				<h:inputText id="gamesplayed"
-					value="#{playerController.player.games}" />
+					value="#{playerController.player.games }" label="Games played" />
 
 				<h:outputLabel value="Points: " for="points" />
-				<h:inputText id="points" value="#{playerController.player.points}" />
+				<h:inputText id="points" value="#{playerController.player.points}"
+					label="Points" />
 
 				<h:outputLabel value="Assists: " for="assists" />
-				<h:inputText id="assists" value="#{playerController.player.assists}" />
+				<h:inputText id="assists" value="#{playerController.player.assists}"
+					label="Assists" />
 
 				<h:outputLabel value="Rebounds: " for="rebounds" />
 				<h:inputText id="rebounds"
-					value="#{playerController.player.rebounds}" />
+					value="#{playerController.player.rebounds}" label="Rebounds" />
 
 				<h:outputLabel value="Steals: " for="steals" />
-				<h:inputText id="steals" value="#{playerController.player.steals}" />
+				<h:inputText id="steals" value="#{playerController.player.steals}"
+					label="Steals" />
 
 				<h:outputLabel value="Blocks: " for="blocks" />
-				<h:inputText id="blocks" value="#{playerController.player.blocks}" />
+				<h:inputText id="blocks" value="#{playerController.player.blocks}"
+					label="Blocks" />
 
 				<h:outputLabel value="Minutes played: " for="minutesplayed" />
 				<h:inputText id="minutesplayed"
-					value="#{playerController.player.minutes}" />
+					value="#{playerController.player.minutes}" label="Minutes played" />
 			</h:panelGrid>
 			<br />
 			<h:commandButton action="#{playerController.save()}" value="Save"

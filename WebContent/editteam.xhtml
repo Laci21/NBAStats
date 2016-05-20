@@ -16,28 +16,36 @@
 					required="true" label="Team name" />
 
 				<h:outputLabel value="Games played: " for="gamesplayed" />
-				<h:inputText id="gamesplayed" value="#{teamController.team.games}" />
+				<h:inputText id="gamesplayed" value="#{teamController.team.games}"
+					label="Games played" />
 
 				<h:outputLabel value="Points: " for="points" />
-				<h:inputText id="points" value="#{teamController.team.points}" />
+				<h:inputText id="points" value="#{teamController.team.points}"
+					label="Points" />
 
 				<h:outputLabel value="Assists: " for="assists" />
-				<h:inputText id="assists" value="#{teamController.team.assists}" />
+				<h:inputText id="assists" value="#{teamController.team.assists}"
+					label="Assists" />
 
 				<h:outputLabel value="Rebounds: " for="rebounds" />
-				<h:inputText id="rebounds" value="#{teamController.team.rebounds}" />
+				<h:inputText id="rebounds" value="#{teamController.team.rebounds}"
+					label="Rebounds" />
 
 				<h:outputLabel value="Steals: " for="steals" />
-				<h:inputText id="steals" value="#{teamController.team.steals}" />
+				<h:inputText id="steals" value="#{teamController.team.steals}"
+					label="Steals" />
 
 				<h:outputLabel value="Blocks: " for="blocks" />
-				<h:inputText id="blocks" value="#{teamController.team.blocks}" />
+				<h:inputText id="blocks" value="#{teamController.team.blocks}"
+					label="Blocks" />
 
 				<h:outputLabel value="Games won: " for="gameswon" />
-				<h:inputText id="gameswon" value="#{teamController.team.won}" />
+				<h:inputText id="gameswon" value="#{teamController.team.won}"
+					label="Games won" />
 
 				<h:outputLabel value="Games lost: " for="gameslost" />
-				<h:inputText id="gameslost" value="#{teamController.team.lost}" />
+				<h:inputText id="gameslost" value="#{teamController.team.lost}"
+					label="Games lost" />
 			</h:panelGrid>
 			<br />
 			<h:commandButton action="#{teamController.save()}" value="Save"
