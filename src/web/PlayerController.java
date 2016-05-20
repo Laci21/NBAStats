@@ -8,6 +8,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Named;
 
+import dal.ClientFacade;
 import dal.PlayerFacade;
 import entity.Player;
 
@@ -21,7 +22,10 @@ public class PlayerController implements Serializable {
 	private boolean editing;
 
 	@EJB
-	private PlayerFacade facade;
+	private PlayerFacade playerFacade;
+
+	@EJB
+	private ClientFacade clientFacade;
 
 	public Player getPlayer() {
 		if (player == null) {
@@ -36,7 +40,7 @@ public class PlayerController implements Serializable {
 
 	public DataModel<Player> getPlayers() {
 		if (players == null)
-			players = new ListDataModel<Player>(facade.findAll());
+			players = new ListDataModel<Player>(playerFacade.findAll());
 		return players;
 	}
 
@@ -61,22 +65,24 @@ public class PlayerController implements Serializable {
 
 	public String editPlayer() {
 		editing = true;
-		player = getPlayers().getRowData();
 		return FacesUtil.pageWithRedirect("editplayer.xhtml");
 	}
 
 	public String removePlayer() {
-		facade.remove(getPlayers().getRowData());
+		playerFacade.remove(player);
+		clientFacade.removeFavouritePlayer(player.getName());
+		player = null;
+		SecurityBean.refreshCurrent();
 
 		FacesUtil.addInfoMessage("Player successfully removed");
 
-		players = new ListDataModel<Player>(facade.findAll());
+		players = new ListDataModel<Player>(playerFacade.findAll());
 		return FacesUtil.pageWithRedirect("mainpage.xhtml");
 	}
 
 	public String save() {
 		if (editing) {
-			facade.edit(player);
+			playerFacade.edit(player);
 
 			FacesUtil.addInfoMessage("Player successfully saved");
 
@@ -86,7 +92,7 @@ public class PlayerController implements Serializable {
 			return FacesUtil.pageWithRedirect("mainpage.xhtml");
 		} else {
 			try {
-				facade.create(player);
+				playerFacade.create(player);
 
 				FacesUtil.addInfoMessage("Player successfully saved");
 
@@ -106,7 +112,7 @@ public class PlayerController implements Serializable {
 	}
 
 	public void search(String name) {
-		player = facade.find(name);
+		player = playerFacade.find(name);
 	}
 
 	public boolean isSearchFoundPlayer() {

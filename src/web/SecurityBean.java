@@ -20,10 +20,10 @@ public class SecurityBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Client current = null;
+	private static Client current = null;
 
 	@EJB
-	private ClientFacade facade;
+	private static ClientFacade facade;
 
 	public Client getCurrent() {
 		if (current == null)
@@ -32,7 +32,7 @@ public class SecurityBean implements Serializable {
 	}
 
 	public void setCurrent(Client current) {
-		this.current = current;
+		SecurityBean.current = current;
 	}
 
 	public boolean isAdmin() {
@@ -68,6 +68,7 @@ public class SecurityBean implements Serializable {
 	}
 
 	public String logout() {
+		current = null;
 		FacesContext.getCurrentInstance().getExternalContext()
 				.invalidateSession();
 		return FacesUtil.pageWithRedirect("index.xhtml");
@@ -116,5 +117,10 @@ public class SecurityBean implements Serializable {
 		}
 
 		return false;
+	}
+
+	public static void refreshCurrent() {
+		String userName = current.getName();
+		current = facade.find(userName);
 	}
 }

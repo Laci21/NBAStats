@@ -9,6 +9,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import entity.Client;
 
@@ -53,4 +54,19 @@ public class ClientFacade extends AbstractFacade<Client> {
 		return super.findAll();
 	}
 
+	@RolesAllowed({ Client.ADMIN_ROLE })
+	public void removeFavouritePlayer(String name) {
+		TypedQuery<String> guery = em
+				.createQuery(
+						"SELECT name FROM Client WHERE favouriteplayername = :name",
+						String.class);
+		guery.setParameter("name", name);
+		List<String> clientList = guery.getResultList();
+
+		for (String clientString : clientList) {
+			Client client = em.find(Client.class, clientString);
+			client.setFavouritePlayerName(null);
+			em.merge(client);
+		}
+	}
 }
