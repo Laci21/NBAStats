@@ -30,6 +30,12 @@ public class DraftFacade extends AbstractFacade<DraftPick> {
 		return em;
 	}
 
+	@Override
+	@PermitAll
+	public void create(DraftPick entity) throws Exception {
+		super.create(entity);
+	}
+
 	@PermitAll
 	public List<Integer> findDifferentYears() {
 		TypedQuery<Integer> query = em.createQuery(

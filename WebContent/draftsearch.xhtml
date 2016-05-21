@@ -14,7 +14,7 @@
 				<f:selectItems value="#{draftController.yearList}" />
 			</h:selectOneMenu>
 
-			<h:commandButton value="Show draft class" style="color:green" />
+			<h:commandButton value="Show draft class" action="#{draftController.refreshPickList()}" style="color:green" />
 
 			<br />
 			<br />
@@ -56,7 +56,15 @@
 			<br />
 			<br />
 
-			<h:messages style="color:green" />
+			<h:form rendered="#{securityBean.admin}">
+				<h:outputLabel value="Select year to import: " for="importyear" />
+				<h:inputText value="#{draftController.importYear}" id="importyear"
+					label="Import year" />
+				<h:commandButton action="#{draftController.importDraftClass()}"
+					value="Import draft class" style="color:blue" />
+			</h:form>
+
+			<h:messages />
 		</h:form>
 	</ui:define>
 </ui:composition>

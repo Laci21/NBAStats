@@ -32,5 +32,6 @@
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_91/db/lib/derbyoptionaltools.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_91/db/lib/derbyrun.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_91/db/lib/derbytools.jar"/>
+	<classpathentry kind="lib" path="F:/javaee/workspaces/HF/gson-2.6.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

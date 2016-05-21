@@ -7,7 +7,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import dal.DraftFacade;
+import service.DraftService;
 import entity.DraftPick;
 
 @Named("draftController")
@@ -16,11 +16,12 @@ public class DraftController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int year;
+	private int importYear;
 	private List<Integer> yearList;
 	private List<DraftPick> pickList;
 
 	@EJB
-	private DraftFacade draftFacade;
+	private DraftService draftService;
 
 	public int getYear() {
 		return year;
@@ -30,8 +31,16 @@ public class DraftController implements Serializable {
 		this.year = year;
 	}
 
+	public int getImportYear() {
+		return importYear;
+	}
+
+	public void setImportYear(int importYear) {
+		this.importYear = importYear;
+	}
+
 	public List<Integer> getYearList() {
-		yearList = draftFacade.findDifferentYears();
+		yearList = draftService.findDifferentYears();
 
 		return yearList;
 	}
@@ -41,8 +50,6 @@ public class DraftController implements Serializable {
 	}
 
 	public List<DraftPick> getPickList() {
-		pickList = draftFacade.findDraftClass(year);
-
 		return pickList;
 	}
 
@@ -50,4 +57,15 @@ public class DraftController implements Serializable {
 		this.pickList = pickList;
 	}
 
+	public void refreshPickList() {
+		pickList = draftService.findDraftClass(year);
+	}
+
+	public void importDraftClass() {
+		if (yearList.contains(importYear)) {
+			FacesUtil.addInfoMessage("Draft class already imported.");
+		} else {
+			draftService.importDraftClass(importYear);
+		}
+	}
 }
