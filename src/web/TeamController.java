@@ -8,9 +8,9 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Named;
 
-import dal.ClientFacade;
-import dal.TeamFacade;
-import entity.Team;
+import dal.impl.ClientFacade;
+import dal.impl.TeamFacade;
+import domain.Team;
 
 @Named("teamController")
 @SessionScoped
@@ -60,24 +60,24 @@ public class TeamController implements Serializable {
 		editing = false;
 		teams = null;
 		team = null;
-		return FacesUtil.pageWithRedirect("editteam.xhtml");
+		return FacesUtil.pageWithRedirect("/faces/admin/editteam.xhtml");
 	}
 
 	public String editTeam() {
 		editing = true;
-		return FacesUtil.pageWithRedirect("editteam.xhtml");
+		return FacesUtil.pageWithRedirect("/faces/admin/editteam.xhtml");
 	}
 
 	public String removeTeam() {
 		teamFacade.remove(team);
 		clientFacade.removeFavouriteTeam(team.getName());
 		team = null;
-		SecurityBean.refreshCurrent();
+		ClientController.refreshCurrent();
 
 		FacesUtil.addInfoMessage("Team successfully removed");
 
 		teams = new ListDataModel<Team>(teamFacade.findAll());
-		return FacesUtil.pageWithRedirect("mainpage.xhtml");
+		return FacesUtil.pageWithRedirect("/faces/guest/mainpage.xhtml");
 	}
 
 	public String save() {
@@ -89,7 +89,7 @@ public class TeamController implements Serializable {
 			teams = null;
 			team = null;
 
-			return FacesUtil.pageWithRedirect("mainpage.xhtml");
+			return FacesUtil.pageWithRedirect("/faces/guest/mainpage.xhtml");
 		} else {
 			try {
 				teamFacade.create(team);
@@ -99,14 +99,15 @@ public class TeamController implements Serializable {
 				teams = null;
 				team = null;
 
-				return FacesUtil.pageWithRedirect("mainpage.xhtml");
+				return FacesUtil.pageWithRedirect("/faces/guest/mainpage.xhtml");
 			} catch (Exception e) {
 				FacesUtil.addInfoMessage(team.getName() + " already saved.");
 
 				teams = null;
 				team = null;
 
-				return FacesUtil.pageWithRedirect("editteam.xhtml");
+				return FacesUtil
+						.pageWithRedirect("/faces/admin/editteam.xhtml");
 			}
 		}
 	}

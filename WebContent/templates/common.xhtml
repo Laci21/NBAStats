@@ -10,20 +10,23 @@
 </h:head>
 
 <h:body
-	style="background-image: url(background.jpg); background-size:cover; ">
-		Welcome <h:outputLabel value="#{securityBean.current.name}" />!
+	style="background-image: url(/NBAStats/faces/images/background.jpg); background-size:cover; ">
+		Welcome <h:outputLabel value="#{clientController.current.name}" />!
 	<h:form>
-		<h:commandButton action="#{securityBean.logout()}" value="Logout"
-			immediate="true" rendered="#{securityBean.user}" style="color:red" />
+		<h:commandButton action="#{clientController.logout()}" value="Logout"
+			immediate="true" rendered="#{clientController.user}"
+			style="color:red" />
 	</h:form>
 	<br />
 	<h:form>
-		<h:commandLink action="/faces/index.xhtml?faces-redirect=true">
-			<h:graphicImage value="homepage.jpg" height="40" width="40"
-				style="margin-right: 10px" />
+		<h:commandLink action="/faces/guest/index.xhtml?faces-redirect=true">
+			<h:graphicImage value="/faces/images/homepage.jpg" height="40"
+				width="40" style="margin-right: 10px" />
 		</h:commandLink>
-		<h:commandLink action="/faces/mainpage.xhtml?faces-redirect=true">
-			<h:graphicImage value="mainpage.jpg" height="40" width="40" />
+		<h:commandLink
+			action="/faces/guest/mainpage.xhtml?faces-redirect=true">
+			<h:graphicImage value="/faces/images/mainpage.jpg" height="40"
+				width="40" />
 		</h:commandLink>
 	</h:form>
 	<h1>

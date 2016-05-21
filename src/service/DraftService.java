@@ -7,8 +7,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import web.FacesUtil;
-import dal.DraftFacade;
-import entity.DraftPick;
+import dal.impl.DraftFacade;
+import domain.DraftPick;
 
 @Stateless
 @LocalBean

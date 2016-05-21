@@ -7,8 +7,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import domain.DraftPick;
 import service.DraftService;
-import entity.DraftPick;
 
 @Named("draftController")
 @SessionScoped

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/templates/common.xhtml">
+	<ui:define name="pageTitle">NBAStats main page</ui:define>
+	<ui:define name="pageHeader">NBAStats main page</ui:define>
+	<ui:define name="body">
+		<h:form>
+			<h:commandButton
+				action="/faces/guest/player/playersearch.xhtml?faces-redirect=true"
+				value="Player search" style="color:green" />
+			<br />
+			<br />
+
+			<h:commandButton
+				action="/faces/guest/team/teamsearch.xhtml?faces-redirect=true"
+				value="Team search" style="color:blue" />
+			<br />
+			<br />
+
+			<h:commandButton
+				action="/faces/guest/draft/draftsearch.xhtml?faces-redirect=true"
+				value="Draft search" style="color:brown" />
+		</h:form>
+		<br />
+		<h:messages />
+	</ui:define>
+</ui:composition>
+</html>

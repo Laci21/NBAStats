@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/templates/common.xhtml">
+	<ui:define name="pageTitle">NBAStats team search</ui:define>
+	<ui:define name="pageHeader">NBAStats team search</ui:define>
+	<ui:define name="body">
+		<h:form rendered="#{clientController.user}">
+			<h2>Favourite team:</h2>
+			<h:panelGrid columns="4"
+				rendered="#{clientController.hasFavouriteTeam()}">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<h:outputText value="#{clientController.current.favouriteTeamName}" />
+				</h:column>
+				<h:column rendered="#{clientController.user}">
+					<f:facet name="header">
+						<h:outputText value="&nbsp;" />
+					</f:facet>
+					<h:commandButton action="#{clientController.deleteFavouriteTeam()}"
+						value="Delete favourite" style="color:red" />
+				</h:column>
+			</h:panelGrid>
+			<h:outputLabel value="No favourite team selected."
+				rendered="#{!clientController.hasFavouriteTeam()}" />
+		</h:form>
+
+		<br />
+		<br />
+
+		<h:form>
+			<h2>Search for team:</h2>
+			<h:panelGrid columns="3">
+				<h:outputLabel value="Team name:" for="name" />
+				<h:inputText id="name" value="#{teamController.team.name}"
+					required="true" label="Team name" />
+				<h:commandButton
+					action="#{teamController.search(teamController.team.name)}"
+					value="Search" style="color:blue" />
+			</h:panelGrid>
+		</h:form>
+
+		<br />
+
+		<h2>Search result:</h2>
+		<h:form>
+			<h:dataTable value="#{teamController.team}" var="team"
+				rendered="#{teamController.searchFoundTeam}"
+				style="text-align:center" width="70%">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<h:outputText value="#{team.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Games played" />
+					</f:facet>
+					<h:outputText value="#{team.games}" style="" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Points" />
+					</f:facet>
+					<h:outputText value="#{team.points}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Assists" />
+					</f:facet>
+					<h:outputText value="#{team.assists}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Rebounds" />
+					</f:facet>
+					<h:outputText value="#{team.rebounds}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Steals" />
+					</f:facet>
+					<h:outputText value="#{team.steals}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Blocks" />
+					</f:facet>
+					<h:outputText value="#{team.blocks}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Won" />
+					</f:facet>
+					<h:outputText value="#{team.won}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Lost" />
+					</f:facet>
+					<h:outputText value="#{team.lost}" />
+				</h:column>
+				<h:column rendered="#{clientController.user}">
+					<f:facet name="header">
+						<h:outputText value="&nbsp;" />
+					</f:facet>
+					<h:commandButton
+						action="#{clientController.saveAsFavouriteTeam(team.name)}"
+						value="Save as favourite" style="color:green" />
+				</h:column>
+				<h:column rendered="#{clientController.admin}">
+					<f:facet name="header">
+						<h:outputText value="&nbsp;" />
+					</f:facet>
+					<h:commandButton action="#{teamController.editTeam}"
+						value="Edit team" style="color:blue" />
+				</h:column>
+				<h:column rendered="#{clientController.admin}">
+					<f:facet name="header">
+						<h:outputText value="&nbsp;" />
+					</f:facet>
+					<h:commandButton action="#{teamController.removeTeam}"
+						value="Remove team" style="color:red" />
+					<h:outputText value=" " />
+				</h:column>
+			</h:dataTable>
+			<h:outputLabel value="No team found."
+				rendered="#{!teamController.searchFoundTeam}" />
+		</h:form>
+
+		<br />
+		<br />
+
+		<h2>All teams:</h2>
+		<h:form>
+			<h:dataTable value="#{teamController.teams}" var="team"
+				style="text-align:center">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<h:outputText value="#{team.name}" />
+				</h:column>
+			</h:dataTable>
+			<br />
+			<h:commandButton action="#{teamController.createNew}"
+				value="Create new team" rendered="#{clientController.admin}"
+				style="color:green" />
+			<h:messages />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

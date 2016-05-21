@@ -8,9 +8,9 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Named;
 
-import dal.ClientFacade;
-import dal.PlayerFacade;
-import entity.Player;
+import dal.impl.ClientFacade;
+import dal.impl.PlayerFacade;
+import domain.Player;
 
 @Named("playerController")
 @SessionScoped
@@ -60,24 +60,24 @@ public class PlayerController implements Serializable {
 		editing = false;
 		players = null;
 		player = null;
-		return FacesUtil.pageWithRedirect("editplayer.xhtml");
+		return FacesUtil.pageWithRedirect("/faces/admin/editplayer.xhtml");
 	}
 
 	public String editPlayer() {
 		editing = true;
-		return FacesUtil.pageWithRedirect("editplayer.xhtml");
+		return FacesUtil.pageWithRedirect("/faces/admin/editplayer.xhtml");
 	}
 
 	public String removePlayer() {
 		playerFacade.remove(player);
 		clientFacade.removeFavouritePlayer(player.getName());
 		player = null;
-		SecurityBean.refreshCurrent();
+		ClientController.refreshCurrent();
 
 		FacesUtil.addInfoMessage("Player successfully removed");
 
 		players = new ListDataModel<Player>(playerFacade.findAll());
-		return FacesUtil.pageWithRedirect("mainpage.xhtml");
+		return FacesUtil.pageWithRedirect("/faces/guest/mainpage.xhtml");
 	}
 
 	public String save() {
@@ -89,7 +89,7 @@ public class PlayerController implements Serializable {
 			players = null;
 			player = null;
 
-			return FacesUtil.pageWithRedirect("mainpage.xhtml");
+			return FacesUtil.pageWithRedirect("/faces/guest/mainpage.xhtml");
 		} else {
 			try {
 				playerFacade.create(player);
@@ -99,14 +99,14 @@ public class PlayerController implements Serializable {
 				players = null;
 				player = null;
 
-				return FacesUtil.pageWithRedirect("mainpage.xhtml");
+				return FacesUtil.pageWithRedirect("/faces/guest/mainpage.xhtml");
 			} catch (Exception e) {
 				FacesUtil.addInfoMessage(player.getName() + " already saved.");
 
 				players = null;
 				player = null;
 
-				return FacesUtil.pageWithRedirect("editplayer.xhtml");
+				return FacesUtil.pageWithRedirect("/faces/admin/editplayer.xhtml");
 			}
 		}
 	}
