@@ -99,14 +99,16 @@ public class PlayerController implements Serializable {
 				players = null;
 				player = null;
 
-				return FacesUtil.pageWithRedirect("/faces/guest/mainpage.xhtml");
+				return FacesUtil
+						.pageWithRedirect("/faces/guest/mainpage.xhtml");
 			} catch (Exception e) {
 				FacesUtil.addInfoMessage(player.getName() + " already saved.");
 
 				players = null;
 				player = null;
 
-				return FacesUtil.pageWithRedirect("/faces/admin/editplayer.xhtml");
+				return FacesUtil
+						.pageWithRedirect("/faces/admin/editplayer.xhtml");
 			}
 		}
 	}
